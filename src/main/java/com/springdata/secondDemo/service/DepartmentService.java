@@ -24,8 +24,9 @@ public class DepartmentService {
 
 
     public DepartmentDTO getDepartment(Integer id){
-        Optional<Department> dep= this.departmentRepository.findById(id);
-        return DepartmentDTO.toDTO(dep.orElse(null));
+        Department department = this.departmentRepository.findById(id)
+                .orElseThrow(()->new EntityNotFoundException("The department with the id provided is not existed"));
+        return DepartmentDTO.toDTO(department);
     }
 
     public DepartmentDTO addDepartment(DepartmentDTO department){

@@ -1,5 +1,6 @@
 package com.springdata.secondDemo.controller;
 
+import com.springdata.secondDemo.exception.NoDataFoundException;
 import com.springdata.secondDemo.model.dto.DepartmentDTO;
 import com.springdata.secondDemo.model.dto.EmployeeDTO;
 import com.springdata.secondDemo.model.entity.Department;
@@ -20,7 +21,7 @@ public class EmployeeController {
     private EmployeeService empService;
 
     @GetMapping("/{empId}")
-    public EmployeeDTO getEmployee(@PathVariable Integer empId){
+    public EmployeeDTO getEmployee(@PathVariable Integer empId) throws NoDataFoundException {
         return empService.getEmployee(empId);
     }
 

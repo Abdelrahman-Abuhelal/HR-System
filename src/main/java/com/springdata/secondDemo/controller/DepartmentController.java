@@ -8,6 +8,7 @@ import com.springdata.secondDemo.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
@@ -19,7 +20,7 @@ public class DepartmentController {
     private DepartmentService departmentService;
 
     @GetMapping("/{deptId}")
-    public DepartmentDTO getDepartment(@PathVariable Integer deptId){
+    public DepartmentDTO getDepartment(@PathVariable Integer deptId) throws EntityNotFoundException {
         return departmentService.getDepartment(deptId);
     }
 

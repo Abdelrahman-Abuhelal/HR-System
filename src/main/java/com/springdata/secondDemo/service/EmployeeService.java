@@ -23,8 +23,9 @@ public class EmployeeService {
 
 
     public EmployeeDTO getEmployee(Integer id){
-        Optional<Employee>emp= this.employeeRepository.findById(id);
-        return EmployeeDTO.toDTO(emp.orElse(null));
+        Employee employee= employeeRepository.findById(id)
+                .orElseThrow( ()->new NoDataFoundException("no data found"));
+        return EmployeeDTO.toDTO(employee);
     }
 
     public EmployeeDTO addEmployee(EmployeeDTO employee){
